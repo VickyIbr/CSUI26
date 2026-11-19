@@ -74,7 +74,7 @@ export async function migrateImageToS3(sourceUrl: string, targetKeyPrefix: strin
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const buf = Buffer.from(await res.arrayBuffer());
-    const meta = parseImageHeader(buf);
+    const meta = parseImageHeader(buf, 20 * 1024 * 1024);
     const stored = await putObject(`${targetKeyPrefix}.${meta.ext}`, buf, meta.mime);
     return stored.url;
   } catch (err) {

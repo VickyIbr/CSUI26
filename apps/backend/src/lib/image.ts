@@ -62,9 +62,10 @@ function parseJpegDimensions(buf: Buffer): { width: number; height: number } | n
   return null;
 }
 
-export function parseImageHeader(buf: Buffer): ImageMeta {
-  if (buf.byteLength > MAX_IMAGE_BYTES) {
-    throw httpError(413, 'Image exceeds 2 MB limit');
+export function parseImageHeader(buf: Buffer, maxBytes = MAX_IMAGE_BYTES): ImageMeta {
+  if (buf.byteLength > maxBytes) {
+    const limitMb = Math.round(maxBytes / (1024 * 1024));
+    throw httpError(413, `Image exceeds ${limitMb} MB limit`);
   }
   if (buf.byteLength < 12) {
     throw httpError(415, 'Unsupported image format');
