@@ -40,11 +40,12 @@ COPY apps/frontend/package.json ./apps/frontend/
 # Install production dependencies only
 RUN pnpm install --prod --frozen-lockfile --filter @zenith/backend... && pnpm store prune
 
-# Copy built files and migrations from base stage
+# Copy built files, migrations, and seed data from base stage
 COPY --from=base /app/packages/shared/dist ./packages/shared/dist
 COPY --from=base /app/packages/sso-ui/dist ./packages/sso-ui/dist
 COPY --from=base /app/apps/backend/dist ./apps/backend/dist
 COPY --from=base /app/apps/backend/drizzle ./apps/backend/drizzle
+COPY data ./data
 
 # Create logs directory
 RUN mkdir -p /app/logs

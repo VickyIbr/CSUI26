@@ -63,7 +63,7 @@
             "code": "MPK Agama",
             "sks": 2,
             "description": "Mata kuliah pengembangan kepribadian nilai-nilai ketuhanan, etika beragama, dan toleransi kemasyarakatan.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           },
           {
@@ -71,7 +71,7 @@
             "code": "MPK B.Inggris",
             "sks": 2,
             "description": "Peningkatan keterampilan komunikasi akademis berbahasa Inggris lisan dan tulisan, technical writing, dan presentasi.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           }
         ]
@@ -138,7 +138,7 @@
             "code": "MPK B.Indo",
             "sks": 3,
             "description": "Penulisan karya tulis ilmiah, sintaksis bahasa Indonesia baku, dan metodologi sitasi akademis.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           }
         ]
@@ -238,7 +238,7 @@
             "code": "Sisinter",
             "sks": 3,
             "description": "Prinsip interaksi manusia dan komputer, user experience (UX), usability testing, dan perancangan antarmuka pengguna.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://scele.cs.ui.ac.id/"
           },
           {
@@ -319,7 +319,7 @@
             "code": "MPPI",
             "sks": 3,
             "description": "Metodologi riset bidang ilmu komputer, telaah literatur ilmiah, perumusan hipotesis, dan etika publikasi akademik.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://scele.cs.ui.ac.id/"
           },
           {
@@ -353,7 +353,7 @@
             "code": "Komas",
             "sks": 3,
             "description": "Kajian dampak sosial teknologi informasi, etika profesi komputasi, hukum siber, privasi data, dan hak kekayaan intelektual.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://scele.cs.ui.ac.id/"
           }
         ]
@@ -391,7 +391,7 @@
             "code": "PF",
             "sks": 3,
             "description": "Paradigma pemrograman deklaratif dan fungsional menggunakan Haskell atau Scala: immutability, higher-order functions, monad.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           },
           {
@@ -399,7 +399,7 @@
             "code": "Cloud",
             "sks": 3,
             "description": "Arsitektur cloud AWS/GCP, kontainerisasi Docker, orkestrasi Kubernetes, dan implementasi infrastruktur CI/CD.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           },
           {
@@ -407,7 +407,7 @@
             "code": "Datmin",
             "sks": 3,
             "description": "Teknik ekstraksi pola dari big data: clustering, association rule mining, klasifikasi, dan visualisasi interaktif.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           },
           {
@@ -415,7 +415,7 @@
             "code": "CP",
             "sks": 3,
             "description": "Penyelesaian problem algoritmik kompleks dengan batas waktu dan memori ketat ala ICPC.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           },
           {
@@ -423,7 +423,7 @@
             "code": "GameDev",
             "sks": 3,
             "description": "Pembuatan game 2D/3D menggunakan game engine Unity/Godot, fisika game, AI musuh, dan game loop.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=CS"
           }
         ]
@@ -482,7 +482,7 @@
             "code": "Kalkulus 1",
             "sks": 3,
             "description": "Fungsi, limit, turunan, dan konsep integral dasar untuk analisis optimasi kuantitatif.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -490,7 +490,7 @@
             "code": "MPK Agama",
             "sks": 2,
             "description": "Pembentukan karakter spiritual dan etika peradaban masyarakat berketuhanan.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -498,7 +498,7 @@
             "code": "MPK B.Inggris",
             "sks": 2,
             "description": "Komunikasi profesional berbahasa Inggris dalam konteks bisnis dan teknologi informasi.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -551,7 +551,7 @@
             "code": "MD 2",
             "sks": 3,
             "description": "Teori graf, pohon, serta struktur relasi untuk optimasi alur informasi sistem.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -559,7 +559,7 @@
             "code": "MPK B.Indo",
             "sks": 3,
             "description": "Teknik penulisan laporan teknis, karya ilmiah, dan presentasi formal berstandar nasional.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -613,7 +613,7 @@
             "code": "OS",
             "sks": 4,
             "description": "Prinsip OS, konkurensi, penjadwalan CPU, dan pengelolaan sumber daya komputasi.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -646,7 +646,7 @@
             "code": "Jarkom",
             "sks": 4,
             "description": "Infrastruktur jaringan telekomunikasi, routing, keamanan jaringan korporasi, dan protokol internet.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -664,7 +664,7 @@
             "code": "IMK",
             "sks": 2,
             "description": "User-Centered Design (UCD), prototyping Figma, evaluasi heuristik, dan design system.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -687,7 +687,7 @@
             "code": "MBD",
             "sks": 3,
             "description": "Administrasi database, query optimization, backup recovery, data warehousing, dan NoSQL.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -705,7 +705,7 @@
             "code": "Etprof",
             "sks": 3,
             "description": "Etika profesi TI, privasi digital, kepatuhan GDPR/UU PDP, dan tanggung jawab sosial profesional.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -718,7 +718,7 @@
             "code": "MPTI",
             "sks": 3,
             "description": "Metodologi Project Management Body of Knowledge (PMBOK), budgeting, dan risk mitigation.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -726,7 +726,7 @@
             "code": "Pilihan 1",
             "sks": 3,
             "description": "Mata kuliah peminatan sesuai fokus jalur karir.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -734,7 +734,7 @@
             "code": "Pilihan 2",
             "sks": 3,
             "description": "Mata kuliah spesialisasi bisnis dan teknologi informasi.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -747,7 +747,7 @@
             "code": "Pilihan 3",
             "sks": 3,
             "description": "Peminatan tingkat lanjut sistem enterprise / data.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -755,7 +755,7 @@
             "code": "Pilihan 4",
             "sks": 3,
             "description": "Peminatan penunjang topik riset akhir.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -763,7 +763,7 @@
             "code": "Pilihan 5",
             "sks": 3,
             "description": "Mata kuliah elektif pendukung kompetensi profesional.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -776,7 +776,7 @@
             "code": "Skripsi",
             "sks": 6,
             "description": "Penyusunan tugas akhir riset empiris sistem informasi dan sidang sarjana.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -784,7 +784,7 @@
             "code": "Pilihan 6",
             "sks": 3,
             "description": "Mata kuliah pilihan penutup pemenuhan kurikulum.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -797,7 +797,7 @@
             "code": "BI",
             "sks": 3,
             "description": "Perancangan ETL pipeline, data warehouse Kimball, OLAP cube, dan dashboard visualisasi Tableau/PowerBI.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -805,7 +805,7 @@
             "code": "Audit SI",
             "sks": 3,
             "description": "Standar audit ISACA, kontrol internal sistem, forensic investigation, dan manajemen kerentanan.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -813,7 +813,7 @@
             "code": "E-Biz",
             "sks": 3,
             "description": "Model bisnis digital platform, fintech, e-commerce architecture, dan strategi disrupsi inovasi.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           },
           {
@@ -821,7 +821,7 @@
             "code": "ITSM",
             "sks": 3,
             "description": "Best practice implementasi framework ITIL 4 untuk pengelolaan service desk dan incident management.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=SI"
           }
         ]
@@ -890,7 +890,7 @@
             "code": "MPK Agama",
             "sks": 2,
             "description": "Penanaman akhlak, etika moral, dan keharmonisan sosial.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -898,7 +898,7 @@
             "code": "MPK B.Inggris",
             "sks": 2,
             "description": "Academic reading dan writing untuk literatur ilmiah serta komunikasi paper riset AI.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -941,7 +941,7 @@
             "code": "POK",
             "sks": 3,
             "description": "Arsitektur CPU/GPU komputasi paralel dan memori akses berkecepatan tinggi.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -949,7 +949,7 @@
             "code": "MD 2",
             "sks": 3,
             "description": "Pohon keputusan, teori probabilitas diskret, dan pemodelan relasional logika.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -957,7 +957,7 @@
             "code": "MPK B.Indo",
             "sks": 3,
             "description": "Tata bahasa ilmiah bahasa Indonesia untuk publikasi karya akademik.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -990,7 +990,7 @@
             "code": "Basdat",
             "sks": 4,
             "description": "Manajemen relasional SQL, database vektor (Vector DB), dan NoSQL untuk dataset AI berskala besar.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1009,7 +1009,7 @@
             "code": "OS",
             "sks": 4,
             "description": "Manajemen proses, threads multitasking, virtualisasi sistem, dan komputasi awan.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -1033,7 +1033,7 @@
             "code": "DAA",
             "sks": 3,
             "description": "Algoritma optimasi lanjutan, pemrograman dinamis, dan analisis kompleksitas komputasional.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1051,7 +1051,7 @@
             "code": "Jarkom",
             "sks": 4,
             "description": "Komunikasi data, protokol transfer data streaming, dan arsitektur distributed computing.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1085,7 +1085,7 @@
             "code": "CV",
             "sks": 3,
             "description": "Image processing, feature extraction, object detection (YOLO), image segmentation, dan facial recognition.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1093,7 +1093,7 @@
             "code": "NLP",
             "sks": 3,
             "description": "Tokenisasi, embedding (Word2Vec, BERT), LLM prompting, text summarization, dan sentiment analysis.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1101,7 +1101,7 @@
             "code": "Etika AI",
             "sks": 2,
             "description": "Keadilan algoritma (fairness), bias mitigasi, explainability (XAI), hak cipta generatif, dan etika kecerdasan buatan.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1109,7 +1109,7 @@
             "code": "HAI",
             "sks": 2,
             "description": "Perancangan antarmuka human-in-the-loop, agen percakapan (chatbots), dan user trust modeling.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -1132,7 +1132,7 @@
             "code": "Pilihan AI 1",
             "sks": 3,
             "description": "Spesialisasi riset lanjutan di bidang kecerdasan buatan.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1140,7 +1140,7 @@
             "code": "Pilihan AI 2",
             "sks": 3,
             "description": "Pengembangan modul aplikasi cerdas spesifik.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -1153,7 +1153,7 @@
             "code": "Pilihan AI 3",
             "sks": 3,
             "description": "Eksplorasi state-of-the-art model dan teknologi AI mutakhir.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1161,7 +1161,7 @@
             "code": "Pilihan AI 4",
             "sks": 3,
             "description": "Riset peminatan interdisipliner.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1169,7 +1169,7 @@
             "code": "Pilihan AI 5",
             "sks": 3,
             "description": "Elektif terapan pendukung penyusunan tugas akhir.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -1182,7 +1182,7 @@
             "code": "Skripsi AI",
             "sks": 6,
             "description": "Penyusunan naskah riset ilmiah kecerdasan artifisial dan uji kelayakan inovasi komputasi.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1190,7 +1190,7 @@
             "code": "Pilihan AI 6",
             "sks": 3,
             "description": "Mata kuliah pilihan penutup program sarjana.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -1203,7 +1203,7 @@
             "code": "GenAI",
             "sks": 3,
             "description": "Diffusion models, GANs, fine-tuning LLM (LoRA/QLoRA), RAG pipeline, dan prompt orchestration.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1211,7 +1211,7 @@
             "code": "RL",
             "sks": 3,
             "description": "Q-learning, Policy Gradients, Actor-Critic, Deep Q-Networks (DQN), dan simulasi game environment.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1219,7 +1219,7 @@
             "code": "Robotics",
             "sks": 3,
             "description": "Kinematika robot, sensor fusion (LiDAR/IMU), SLAM, path planning, dan ROS integration.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           },
           {
@@ -1227,7 +1227,7 @@
             "code": "BioAI",
             "sks": 3,
             "description": "Analisis sekuens DNA, pemodelan struktur protein dengan AI, dan komputasi biomedis.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=AI"
           }
         ]
@@ -1297,7 +1297,7 @@
             "code": "Religion",
             "sks": 2,
             "description": "Universal ethical perspectives, multicultural engagement, and personal morality.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1305,7 +1305,7 @@
             "code": "Eng Writing",
             "sks": 2,
             "description": "Advanced academic essay composition, technical literature review, and rhetorical argumentation in English.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1368,7 +1368,7 @@
             "code": "Indonesian",
             "sks": 3,
             "description": "Standard Indonesian linguistic structures for formal and professional discourse.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1421,7 +1421,7 @@
             "code": "Automata",
             "sks": 3,
             "description": "Regular languages, context-free grammars, pushdown automata, and universal Turing machines.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1434,7 +1434,7 @@
             "code": "DAA",
             "sks": 3,
             "description": "Dynamic programming, greedy paradigms, amortized analysis, network flow, and intractable problems.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1472,7 +1472,7 @@
             "code": "AI",
             "sks": 3,
             "description": "Search algorithms, reinforcement learning, machine learning principles, and knowledge representation.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1495,7 +1495,7 @@
             "code": "Graphics",
             "sks": 3,
             "description": "3D transformations, shader programming, ray tracing, illumination models, and WebGL pipeline.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1503,7 +1503,7 @@
             "code": "Crypto",
             "sks": 3,
             "description": "Symmetric/asymmetric encryption, cryptographic hashes, digital certificates, and network security protocols.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1511,7 +1511,7 @@
             "code": "HCI",
             "sks": 2,
             "description": "User research, UX design workflows, accessibility compliance, and interface evaluation.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1519,7 +1519,7 @@
             "code": "Ethics",
             "sks": 3,
             "description": "Global cyber laws, intellectual property rights, data privacy regulations, and ethical engineering conduct.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1532,7 +1532,7 @@
             "code": "ITPM",
             "sks": 3,
             "description": "Agile project leadership, risk budgeting, team dynamics, and international resource delivery.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1540,7 +1540,7 @@
             "code": "Elective 1",
             "sks": 3,
             "description": "Advanced specialization subject (Exchange / Partner University credit transfer).",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1548,7 +1548,7 @@
             "code": "Elective 2",
             "sks": 3,
             "description": "Global specialization subject (Exchange / Partner University credit transfer).",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1561,7 +1561,7 @@
             "code": "Elective 3",
             "sks": 3,
             "description": "Specialized senior elective at Fasilkom or abroad.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1569,7 +1569,7 @@
             "code": "Elective 4",
             "sks": 3,
             "description": "Partner university study abroad curriculum subject.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1577,7 +1577,7 @@
             "code": "Elective 5",
             "sks": 3,
             "description": "Advanced computational research seminar.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1590,7 +1590,7 @@
             "code": "Thesis",
             "sks": 6,
             "description": "Independent research investigation, defense presentation, and bachelor publication.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1598,7 +1598,7 @@
             "code": "Elective 6",
             "sks": 3,
             "description": "Final capstone elective to satisfy graduation degree requirements.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]
@@ -1611,7 +1611,7 @@
             "code": "Cloud",
             "sks": 3,
             "description": "Distributed microservices, serverless computation, Kubernetes cluster management, and global cloud networks.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1619,7 +1619,7 @@
             "code": "FuncProg",
             "sks": 3,
             "description": "Declarative type systems, currying, monads, lazy evaluation, and pure functional software verification.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1627,7 +1627,7 @@
             "code": "Mobile",
             "sks": 3,
             "description": "Cross-platform and native mobile software architecture for iOS and Android.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           },
           {
@@ -1635,7 +1635,7 @@
             "code": "HPC",
             "sks": 3,
             "description": "CUDA GPU programming, OpenMP, MPI distributed processing, and parallel algorithms.",
-            "prerequisites": [],
+            "prerequisites": null,
             "materialUrl": "https://course.csui.dev/?prodi=KKI"
           }
         ]

@@ -67,7 +67,8 @@ export async function migrateImageToS3(sourceUrl: string, targetKeyPrefix: strin
     }
 
     const res = await fetch(sourceUrl, {
-      signal: AbortSignal.timeout(10_000),
+      signal: AbortSignal.timeout(15_000),
+      redirect: 'follow',
       headers: { Accept: 'image/webp,image/*' },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -152,10 +153,6 @@ async function seedMembers() {
 
   const valid: Array<{ member: Member; programId: string }> = [];
   for (const member of membersData) {
-    if (!member.foto || !member.foto.url) {
-      console.log(`Skipping member ${member.npm} (${member.name}) - missing foto`);
-      continue;
-    }
     const programId = programByKey.get(member.major);
     if (!programId) {
       console.log(`Skipping member ${member.npm} (${member.name}) - unknown program ${member.major}`);
@@ -165,21 +162,23 @@ async function seedMembers() {
   }
 
   const rows = await mapWithConcurrency(valid, 5, async ({ member, programId }) => {
-    const migratedUrl = await migrateImageToS3(member.foto.url, `members/${member.npm}`);
+    const rawUrl = member.foto?.url?.trim() || '';
+    const migratedUrl = rawUrl ? await migrateImageToS3(rawUrl, `members/${member.npm}`) : '';
+    const fotoConfig = member.foto?.config ?? { x: 50, y: 50, zoom: 1, aspect: '1:1' };
     return {
       npm: member.npm,
       email: member.email,
       name: member.name,
       namaPanggilan: member.nama_panggilan,
       programId,
-      instagram: member.instagram || '',
-      line: member.line || '',
-      github: member.github || '',
-      linkedin: member.linkedin || '',
-      deskripsi: member.deskripsi || '',
-      niche: member.niche || '',
-      quotes: member.quotes || '',
-      foto: { ...member.foto, url: migratedUrl },
+      instagram: member.instagram || null,
+      line: member.line || null,
+      github: member.github || null,
+      linkedin: member.linkedin || null,
+      deskripsi: member.deskripsi || null,
+      niche: member.niche || null,
+      quotes: member.quotes || null,
+      foto: { config: fotoConfig, url: migratedUrl },
       role: 'user',
     };
   });
