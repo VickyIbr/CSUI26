@@ -154,6 +154,7 @@ services:
       - "8080"
     networks:
       private: {}
+      public: {}
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:8080/healthz"]
       interval: 15s
