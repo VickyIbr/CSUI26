@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
+import { Loader2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ErrorState } from '@/components/patterns/ErrorState';
@@ -91,13 +92,21 @@ export default function AuthCallbackPage() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-background p-4">
         <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle>Processing login</CardTitle>
-            <CardDescription>Connecting your SSO-UI account.</CardDescription>
+          <CardHeader className="space-y-1.5">
+            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              CSUI · Studio
+            </p>
+            <CardTitle className="flex items-center gap-2 text-2xl font-semibold tracking-tight">
+              <span>Zenith</span>
+              <Loader2 className="size-4 animate-spin text-muted-foreground" aria-hidden="true" />
+            </CardTitle>
+            <CardDescription className="text-sm leading-relaxed">
+              Signing you in with your SSO-UI account...
+            </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
-            <Skeleton className="h-4 w-2/3" />
-            <Skeleton className="h-4 w-1/2" />
+          <CardContent className="space-y-2.5 pt-2">
+            <Skeleton className="h-3.5 w-3/4" />
+            <Skeleton className="h-3.5 w-1/2" />
           </CardContent>
         </Card>
       </main>

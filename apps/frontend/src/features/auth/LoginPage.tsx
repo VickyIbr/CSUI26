@@ -17,23 +17,23 @@ export default function LoginPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-sm">
-        <CardHeader>
-          <div className="mb-2 flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <span className="text-sm font-semibold" aria-hidden="true">
-              CZ
-            </span>
-          </div>
-          <CardTitle>CSUI Zenith</CardTitle>
-          <CardDescription>
-            Sign in with your SSO-UI account to manage study programs, courses, and members.
+        <CardHeader className="space-y-1.5">
+          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            CSUI · Studio
+          </p>
+          <CardTitle className="text-2xl font-semibold tracking-tight">
+            Zenith
+          </CardTitle>
+          <CardDescription className="text-sm leading-relaxed">
+            Sign in with your SSO-UI account to manage your Zenith profile, showcase your work, and explore the community.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-2">
           <Button type="button" className="w-full" onClick={login}>
             Sign in with SSO-UI
           </Button>
           <p className="mt-3 text-xs text-muted-foreground">
-            Only registered accounts can access this panel.
+            Only registered Zenith accounts can access this panel.
           </p>
         </CardContent>
       </Card>
