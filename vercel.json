@@ -1,0 +1,46 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "backend": {
+      "root": "apps/backend",
+      "framework": "fastify",
+      "entrypoint": "src/server.ts",
+      "installCommand": "cd ../.. && npx -y pnpm@10.6.5 install --frozen-lockfile",
+      "buildCommand": "cd ../.. && pnpm turbo run build --filter=@zenith/backend^...",
+      "outputDirectory": "."
+    },
+    "frontend": {
+      "root": "apps/frontend",
+      "framework": "vite",
+      "installCommand": "cd ../.. && npx -y pnpm@10.6.5 install --frozen-lockfile",
+      "buildCommand": "cd ../.. && pnpm turbo run build --filter=@zenith/frontend",
+      "outputDirectory": "dist",
+      "rewrites": [
+        {
+          "source": "/((?!assets/|src/|node_modules/|@|favicon\\.svg|icons\\.svg|favicon\\.ico).*)",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/health",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
+    }
+  ]
+}

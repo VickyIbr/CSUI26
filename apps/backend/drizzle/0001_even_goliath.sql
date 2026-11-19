@@ -1,0 +1,1 @@
+ALTER TABLE "courses" ADD CONSTRAINT "courses_sks_check" CHECK ("courses"."sks" > 0 AND "courses"."sks" <= 6);

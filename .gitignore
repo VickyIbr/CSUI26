@@ -1,0 +1,25 @@
+# Dependencies & Build Outputs
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.turbo/
+**/.turbo/
+coverage/
+**/coverage/
+
+# Environment & Logs
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Runtime Volume Data & Secrets (CSUI-26/backend)
+secrets/
+postgres/
+seaweed/
+runtime/
+/data/postgres/
+/data/minio/
+apps/frontend/testout*.txt

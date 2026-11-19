@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: zenith
+          POSTGRES_PASSWORD: devpass
+          POSTGRES_DB: zenith_test
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd="pg_isready -U zenith -d zenith_test"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace
+        run: pnpm turbo run build
+
+      - name: Lint and typecheck
+        run: pnpm turbo run lint
+
+      - name: Prepare test databases
+        env:
+          DATABASE_URL: postgres://zenith:devpass@localhost:5433/zenith_test
+          JWT_SECRET: ci-test-secret
+        run: |
+          pnpm --filter @zenith/backend exec node --input-type=module -e "import postgres from 'postgres'; const sql = postgres('postgres://zenith:devpass@localhost:5433/zenith_test'); await sql.unsafe('CREATE DATABASE zenith_schema_test').catch(() => {}); await sql.end();"
+          pnpm db:migrate
+          pnpm seed
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgres://zenith:devpass@localhost:5433/zenith_test
+          JWT_SECRET: ci-test-secret
+          ADMIN_NPM_LIST: '2606888572'
+          SERVICE_URL: http://localhost:5173/auth/callback
+          FRONTEND_URL: http://localhost:5173
+          ALLOWED_ORIGINS: http://localhost:5173
+        run: pnpm turbo run test

@@ -1,0 +1,52 @@
+# Local-development override. Start with:
+# docker compose --env-file .env -f compose.yml -f compose.dev.yml up -d
+
+services:
+  postgres:
+    env_file:
+      - ${ZENITH_ENV_FILE:-.env}
+    environment:
+      POSTGRES_USER: ${POSTGRES_SUPERUSER}
+      POSTGRES_PASSWORD: ${POSTGRES_SUPERUSER_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DEFAULT_DATABASE}
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=scram-sha-256
+    ports:
+      - "127.0.0.1:${ZENITH_POSTGRES_PORT:-5432}:5432"
+
+  seaweedfs:
+    command:
+      - server
+      - -master
+      - -volume
+      - -filer
+      - -s3
+      - -ip=seaweedfs
+      - -ip.bind=0.0.0.0
+      - -dir=/data/volume
+      - -master.dir=/data/master
+      - -volume.max=0
+      - -volume.minFreeSpace=10GiB
+      - -filer.port=8888
+      - -s3.port=8333
+      - -s3.config=/etc/seaweedfs/s3.json
+      - -s3.allowedOrigins=http://localhost:5173,http://127.0.0.1:5173,http://localhost,http://127.0.0.1
+      - -s3.port.iceberg=0
+      - -s3.port.lance=0
+      - -master.telemetry=false
+    ports:
+      - "127.0.0.1:${ZENITH_S3_PORT:-8333}:8333"
+      - "127.0.0.1:${ZENITH_FILER_PORT:-8888}:8888"
+
+  backend:
+    env_file:
+      - ${ZENITH_ENV_FILE:-.env}
+    ports:
+      - "127.0.0.1:${ZENITH_BACKEND_PORT:-8080}:8080"
+
+  frontend:
+    ports:
+      - "127.0.0.1:${ZENITH_FRONTEND_PORT:-3000}:80"
+
+  gateway:
+    ports:
+      - "127.0.0.1:${ZENITH_GATEWAY_PORT:-80}:80"

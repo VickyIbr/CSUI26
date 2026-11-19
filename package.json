@@ -1,0 +1,21 @@
+{
+  "name": "csui-zenith-monorepo",
+  "private": true,
+  "packageManager": "pnpm@10.6.5",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "db:migrate": "pnpm --filter @zenith/backend run db:migrate",
+    "seed": "pnpm --filter @zenith/backend run seed"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,226 @@
+name: zenith-backend
+
+services:
+  postgres:
+    image: postgres:17.7-bookworm@sha256:86e0b703649d7a792bd9243ee28afc9d8f7c6b2b5638077c9d6882d4d472bbfd
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_SUPERUSER}
+      POSTGRES_PASSWORD: ${POSTGRES_SUPERUSER_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DEFAULT_DATABASE}
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=scram-sha-256
+      SEAWEED_FILERS_DATABASE: ${SEAWEED_FILERS_DATABASE}
+      SEAWEED_FILERS_USER: ${SEAWEED_FILERS_USER}
+      SEAWEED_FILERS_PASSWORD: ${SEAWEED_FILERS_PASSWORD}
+      ZENITH_BACKEND_DATABASE: ${ZENITH_BACKEND_DATABASE}
+      ZENITH_BACKEND_USER: ${ZENITH_BACKEND_USER}
+      ZENITH_BACKEND_PASSWORD: ${ZENITH_BACKEND_PASSWORD}
+    command:
+      - postgres
+      - -c
+      - config_file=/var/lib/postgresql/config/postgresql.conf
+    volumes:
+      - ${ZENITH_RUNTIME_DIR:-.}/postgres:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+      - ./config/postgresql.conf:/var/lib/postgresql/config/postgresql.conf:ro
+      - ./config/pg_hba.conf:/var/lib/postgresql/config/pg_hba.conf:ro
+    networks:
+      private: {}
+    shm_size: 256m
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  seaweedfs:
+    image: chrislusf/seaweedfs:latest@sha256:4b42c212543a0acd4c0e675215ecdcaf62a186ef98def76c7e12701871222d15
+    restart: unless-stopped
+    entrypoint:
+      - /bin/sh
+      - -ec
+      - |
+        mkdir -p /etc/seaweedfs
+        cp /run/zenith-secrets/s3.json /etc/seaweedfs/s3.json
+        cp /run/zenith-secrets/filer.toml /etc/seaweedfs/filer.toml
+        chown seaweed:seaweed /etc/seaweedfs/s3.json /etc/seaweedfs/filer.toml
+        chmod 0600 /etc/seaweedfs/s3.json /etc/seaweedfs/filer.toml
+        exec /entrypoint.sh "$@"
+      - --
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command:
+      - server
+      - -master
+      - -volume
+      - -filer
+      - -s3
+      - -ip=seaweedfs
+      - -ip.bind=0.0.0.0
+      - -dir=/data/volume
+      - -master.dir=/data/master
+      - -volume.max=0
+      - -volume.minFreeSpace=10GiB
+      - -filer.port=8888
+      - -s3.port=8333
+      - -s3.config=/etc/seaweedfs/s3.json
+      - -s3.port.iceberg=0
+      - -s3.port.lance=0
+      - -master.telemetry=false
+    volumes:
+      - ${ZENITH_RUNTIME_DIR:-.}/seaweed:/data
+      - ${ZENITH_RUNTIME_DIR:-.}/secrets:/run/zenith-secrets:ro
+    networks:
+      private: {}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:8888/"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 45s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  storage-bootstrap:
+    image: amazon/aws-cli:2.31.16@sha256:8d4162b313590e71cfd5083e4d33079792137a5ddac3b10ead25aa2da4a558a4
+    restart: "no"
+    depends_on:
+      seaweedfs:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        for bucket in zenith assets; do
+          aws --endpoint-url http://seaweedfs:8333 s3api head-bucket --bucket "$$bucket" >/dev/null 2>&1 ||
+            aws --endpoint-url http://seaweedfs:8333 s3api create-bucket --bucket "$$bucket"
+        done
+    environment:
+      AWS_EC2_METADATA_DISABLED: "true"
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: ${SEAWEED_S3_ADMIN_ACCESS_KEY}
+      AWS_SECRET_ACCESS_KEY: ${SEAWEED_S3_ADMIN_SECRET_KEY}
+    networks:
+      private: {}
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+      target: production
+    image: zenith-backend:latest
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      seaweedfs:
+        condition: service_healthy
+      storage-bootstrap:
+        condition: service_completed_successfully
+    environment:
+      NODE_ENV: production
+      PORT: 8080
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${ZENITH_BACKEND_DATABASE}
+      DATABASE_USER: ${ZENITH_BACKEND_USER}
+      DATABASE_PASSWORD: ${ZENITH_BACKEND_PASSWORD}
+      DATABASE_URL: postgres://${ZENITH_BACKEND_USER}:${ZENITH_BACKEND_PASSWORD}@postgres:5432/${ZENITH_BACKEND_DATABASE}
+      DB_POOL_MAX: ${DB_POOL_MAX:-10}
+      DB_PREPARE: ${DB_PREPARE:-true}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      SERVICE_URL: ${SERVICE_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
+      ADMIN_NPM_LIST: ${ADMIN_NPM_LIST:-}
+      S3_ENDPOINT: http://seaweedfs:8333
+      S3_REGION: us-east-1
+      S3_BUCKET: zenith
+      S3_ACCESS_KEY_ID: ${ZENITH_BACKEND_S3_ACCESS_KEY}
+      S3_SECRET_ACCESS_KEY: ${ZENITH_BACKEND_S3_SECRET_KEY}
+      S3_FORCE_PATH_STYLE: "true"
+      S3_PUBLIC_URL: ${S3_PUBLIC_URL:-http://127.0.0.1:8333/zenith}
+    expose:
+      - "8080"
+    networks:
+      private: {}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:8080/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      target: production
+      args:
+        VITE_BASE_PATH: ${VITE_BASE_PATH:-/studio/}
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api/v1}
+    image: zenith-frontend:latest
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    expose:
+      - "80"
+    networks:
+      private: {}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:80/"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  gateway:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
+    volumes:
+      - ./config/gateway.conf:/etc/nginx/conf.d/default.conf:ro
+    expose:
+      - "80"
+    networks:
+      private: {}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:80/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  private:
+    internal: true
