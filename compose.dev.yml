@@ -49,4 +49,4 @@ services:
 
   gateway:
     ports:
-      - "127.0.0.1:${ZENITH_GATEWAY_PORT:-80}:80"
+      - "${ZENITH_GATEWAY_PORT:-80}:80"

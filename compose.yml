@@ -209,6 +209,7 @@ services:
       - "80"
     networks:
       private: {}
+      public: {}
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:80/healthz"]
       interval: 15s
@@ -224,3 +225,5 @@ services:
 networks:
   private:
     internal: true
+  public:
+    driver: bridge
