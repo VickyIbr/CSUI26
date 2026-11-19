@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ErrorState } from '@/components/patterns/ErrorState';
@@ -108,12 +108,12 @@ export default function AuthCallbackPage() {
     <main className="flex min-h-screen items-center justify-center bg-background p-4">
       <div className="w-full max-w-sm space-y-4">
         <ErrorState title="Login failed" message={state.message} />
-        <a
-          href="/login"
+        <Link
+          to="/login"
           className="inline-flex text-sm font-medium text-foreground underline underline-offset-4"
         >
           Back to login page
-        </a>
+        </Link>
       </div>
     </main>
   );

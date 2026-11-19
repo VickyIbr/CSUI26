@@ -56,7 +56,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (window.location.pathname.startsWith('/auth/callback') && params.has('ticket')) {
+    const normalizedBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+    const isCallbackPath =
+      window.location.pathname.startsWith('/auth/callback') ||
+      (normalizedBase !== '' && window.location.pathname.startsWith(`${normalizedBase}/auth/callback`));
+    if (isCallbackPath && params.has('ticket')) {
       return;
     }
     void refresh();
@@ -67,13 +71,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const logout = useCallback(async () => {
+    const normalizedBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+    const loginFallback = `${normalizedBase}/login`;
     try {
       const res = await api<{ data: { logoutUrl?: string } }>('/auth/logout', { method: 'POST' });
       setUser(null);
-      window.location.replace(res.data?.logoutUrl ?? '/login');
+      window.location.replace(res.data?.logoutUrl ?? loginFallback);
     } catch {
       setUser(null);
-      window.location.replace('/login');
+      window.location.replace(loginFallback);
     }
   }, []);
 
