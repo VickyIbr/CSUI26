@@ -66,14 +66,24 @@ export async function migrateImageToS3(sourceUrl: string, targetKeyPrefix: strin
       }
     }
 
-    const res = await fetch(sourceUrl, {
-      signal: AbortSignal.timeout(15_000),
-      redirect: 'follow',
-      headers: { Accept: 'image/webp,image/*' },
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const candidates = sourceUrl.includes('lh3.googleusercontent.com/d/') && !sourceUrl.includes('=')
+      ? [`${sourceUrl}=s1600`, `${sourceUrl}=s1024`, sourceUrl]
+      : [sourceUrl];
 
-    const buf = Buffer.from(await res.arrayBuffer());
+    let buf: Buffer | null = null;
+    for (const url of candidates) {
+      const res = await fetch(url, {
+        signal: AbortSignal.timeout(15_000),
+        redirect: 'follow',
+        headers: { Accept: 'image/webp,image/*' },
+      });
+      if (!res.ok) continue;
+      const candidateBuf = Buffer.from(await res.arrayBuffer());
+      buf = candidateBuf;
+      if (candidateBuf.byteLength <= 2 * 1024 * 1024) break;
+    }
+
+    if (!buf) throw new Error('Failed to fetch image');
     const meta = parseImageHeader(buf, 20 * 1024 * 1024);
     const stored = await putObject(`${targetKeyPrefix}.${meta.ext}`, buf, meta.mime);
     return stored.url;
