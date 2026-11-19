@@ -104,6 +104,7 @@ services:
           aws --endpoint-url http://seaweedfs:8333 s3api head-bucket --bucket "$$bucket" >/dev/null 2>&1 ||
             aws --endpoint-url http://seaweedfs:8333 s3api create-bucket --bucket "$$bucket"
         done
+        aws --endpoint-url http://seaweedfs:8333 s3api put-bucket-policy --bucket zenith --policy '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":"*","Action":["s3:GetObject"],"Resource":["arn:aws:s3:::zenith/*"]}]}'
     environment:
       AWS_EC2_METADATA_DISABLED: "true"
       AWS_DEFAULT_REGION: us-east-1

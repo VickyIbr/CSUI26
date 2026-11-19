@@ -1,4 +1,5 @@
 import '../config/env.js';
+import { randomUUID } from 'node:crypto';
 import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -173,7 +174,7 @@ async function seedMembers() {
 
   const rows = await mapWithConcurrency(valid, 5, async ({ member, programId }) => {
     const rawUrl = member.foto?.url?.trim() || '';
-    const migratedUrl = rawUrl ? await migrateImageToS3(rawUrl, `members/${member.npm}`) : '';
+    const migratedUrl = rawUrl ? await migrateImageToS3(rawUrl, `members/${randomUUID()}`) : '';
     const fotoConfig = member.foto?.config ?? { x: 50, y: 50, zoom: 1, aspect: '1:1' };
     return {
       npm: member.npm,
