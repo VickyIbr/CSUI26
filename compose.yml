@@ -196,6 +196,29 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  landing:
+    build:
+      context: .
+      dockerfile: apps/landing.Dockerfile
+      target: production
+    image: zenith-landing:latest
+    restart: unless-stopped
+    expose:
+      - "80"
+    networks:
+      private: {}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:80/"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   gateway:
     image: nginx:alpine
     restart: unless-stopped
@@ -203,6 +226,8 @@ services:
       backend:
         condition: service_healthy
       frontend:
+        condition: service_healthy
+      landing:
         condition: service_healthy
     volumes:
       - ./config/gateway.conf:/etc/nginx/conf.d/default.conf:ro

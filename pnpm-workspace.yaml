@@ -1,6 +1,4 @@
 packages:
   - "apps/*"
   - "packages/*"
-  # If you add an Astro landing-page submodule under apps/ with its own lockfile,
-  # exclude it here so frozen-lockfile installs for backend/frontend stay isolated:
-  # - "!apps/landing"
+  - "!apps/website"
